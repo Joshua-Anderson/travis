@@ -4,32 +4,91 @@ describe Travis::Client::Repository do
   let(:session) { Travis::Client.new }
   subject { session.repo('rails/rails') }
 
-  its(:slug) { should be == 'rails/rails' }
-  its(:description) { should_not be_empty }
-  its(:last_build_id) { should be == 4125095 }
-  its(:last_build_number) { should be == '6180' }
-  its(:last_build_state) { should be == 'failed' }
-  its(:last_build_duration) { should be == 5019 }
-  its(:last_build_started_at) { should be_a(Time) }
-  its(:last_build_finished_at) { should be_nil }
-  its(:inspect) { should be == "#<Travis::Client::Repository: rails/rails>" }
-  its(:key) { should be_a(Travis::Client::Repository::Key) }
-  its(:last_build) { should be_a(Travis::Client::Build) }
-  its(:color) { should be == 'red' }
-  its(:github_language) { should be == 'Ruby' }
-  its(:owner_name) { should be == 'rails' }
-  its(:owner) { should be == session.account("rails") }
+  describe '#slug' do
+    subject { super().slug }
+    it { should be == 'rails/rails' }
+  end
 
-  it { should_not be_pending  }
-  it { should     be_started  }
-  it { should     be_finished }
-  it { should_not be_passed   }
-  it { should_not be_errored  }
-  it { should     be_failed   }
-  it { should_not be_canceled }
-  it { should     be_created  }
-  it { should     be_red      }
-  it { should_not be_green    }
-  it { should_not be_yellow   }
-  it { should be_unsuccessful }
+  describe '#description' do
+    subject { super().description }
+    it { should_not be_empty }
+  end
+
+  describe '#last_build_id' do
+    subject { super().last_build_id }
+    it { should be == 4125095 }
+  end
+
+  describe '#last_build_number' do
+    subject { super().last_build_number }
+    it { should be == '6180' }
+  end
+
+  describe '#last_build_state' do
+    subject { super().last_build_state }
+    it { should be == 'failed' }
+  end
+
+  describe '#last_build_duration' do
+    subject { super().last_build_duration }
+    it { should be == 5019 }
+  end
+
+  describe '#last_build_started_at' do
+    subject { super().last_build_started_at }
+    it { should be_a(Time) }
+  end
+
+  describe '#last_build_finished_at' do
+    subject { super().last_build_finished_at }
+    it { should be_nil }
+  end
+
+  describe '#inspect' do
+    subject { super().inspect }
+    it { should be == "#<Travis::Client::Repository: rails/rails>" }
+  end
+
+  describe '#key' do
+    subject { super().key }
+    it { should be_a(Travis::Client::Repository::Key) }
+  end
+
+  describe '#last_build' do
+    subject { super().last_build }
+    it { should be_a(Travis::Client::Build) }
+  end
+
+  describe '#color' do
+    subject { super().color }
+    it { should be == 'red' }
+  end
+
+  describe '#github_language' do
+    subject { super().github_language }
+    it { should be == 'Ruby' }
+  end
+
+  describe '#owner_name' do
+    subject { super().owner_name }
+    it { should be == 'rails' }
+  end
+
+  describe '#owner' do
+    subject { super().owner }
+    it { should be == session.account("rails") }
+  end
+
+  it { is_expected.not_to be_pending  }
+  it { is_expected.to     be_started  }
+  it { is_expected.to     be_finished }
+  it { is_expected.not_to be_passed   }
+  it { is_expected.not_to be_errored  }
+  it { is_expected.to     be_failed   }
+  it { is_expected.not_to be_canceled }
+  it { is_expected.to     be_created  }
+  it { is_expected.to     be_red      }
+  it { is_expected.not_to be_green    }
+  it { is_expected.not_to be_yellow   }
+  it { is_expected.to be_unsuccessful }
 end

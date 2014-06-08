@@ -4,29 +4,85 @@ describe Travis::Client::Account do
   context "from all accounts" do
     let(:session) { Travis::Client.new }
     subject { session.accounts.first }
-    its(:name) { should be == 'Konstantin Haase' }
-    its(:login) { should be == 'rkh' }
-    its(:type) { should be == 'user' }
-    its(:repos_count) { should be == 200 }
-    its(:inspect) { should be == "#<Travis::Client::Account: rkh>" }
+
+    describe '#name' do
+      subject { super().name }
+      it { should be == 'Konstantin Haase' }
+    end
+
+    describe '#login' do
+      subject { super().login }
+      it { should be == 'rkh' }
+    end
+
+    describe '#type' do
+      subject { super().type }
+      it { should be == 'user' }
+    end
+
+    describe '#repos_count' do
+      subject { super().repos_count }
+      it { should be == 200 }
+    end
+
+    describe '#inspect' do
+      subject { super().inspect }
+      it { should be == "#<Travis::Client::Account: rkh>" }
+    end
   end
 
   context "known account" do
     let(:session) { Travis::Client.new }
     subject { session.account('rkh') }
-    its(:name) { should be == 'Konstantin Haase' }
-    its(:login) { should be == 'rkh' }
-    its(:type) { should be == 'user' }
-    its(:repos_count) { should be == 200 }
-    its(:inspect) { should be == "#<Travis::Client::Account: rkh>" }
+
+    describe '#name' do
+      subject { super().name }
+      it { should be == 'Konstantin Haase' }
+    end
+
+    describe '#login' do
+      subject { super().login }
+      it { should be == 'rkh' }
+    end
+
+    describe '#type' do
+      subject { super().type }
+      it { should be == 'user' }
+    end
+
+    describe '#repos_count' do
+      subject { super().repos_count }
+      it { should be == 200 }
+    end
+
+    describe '#inspect' do
+      subject { super().inspect }
+      it { should be == "#<Travis::Client::Account: rkh>" }
+    end
   end
 
   context "known account" do
     let(:session) { Travis::Client.new }
     subject { session.account('foo') }
-    its(:name) { should be_nil }
-    its(:login) { should be == 'foo' }
-    its(:type) { should be_nil }
-    its(:inspect) { should be == "#<Travis::Client::Account: foo>" }
+
+    describe '#name' do
+      subject { super().name }
+      it { should be_nil }
+    end
+
+    describe '#login' do
+      subject { super().login }
+      it { should be == 'foo' }
+    end
+
+    describe '#type' do
+      subject { super().type }
+      it { should be_nil }
+    end
+
+    describe '#inspect' do
+      subject { super().inspect }
+      it { should be == "#<Travis::Client::Account: foo>" }
+    end
   end
 end
